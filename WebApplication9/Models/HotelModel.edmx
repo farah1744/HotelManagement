@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WPFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WPF.Hotel.Chambres' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Chambres">
+          <Key>
+            <PropertyRef Name="IdChambre" />
+            <PropertyRef Name="NumChambre" />
+            <PropertyRef Name="ImageChambre" />
+            <PropertyRef Name="PrixChambre" />
+            <PropertyRef Name="BookingStatusId" />
+            <PropertyRef Name="idTypeChambre" />
+            <PropertyRef Name="CapaciteChambre" />
+            <PropertyRef Name="DescriptionChambre" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="IdChambre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumChambre" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="ImageChambre" Type="nvarchar" MaxLength="550" Nullable="false" />
+          <Property Name="PrixChambre" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="BookingStatusId" Type="int" Nullable="false" />
+          <Property Name="idTypeChambre" Type="int" Nullable="false" />
+          <Property Name="CapaciteChambre" Type="int" Nullable="false" />
+          <Property Name="DescriptionChambre" Type="nvarchar" MaxLength="550" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WPF.Hotel.Payments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="PaymentId" />
+          </Key>
+          <Property Name="PaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookingId" Type="int" />
+          <Property Name="PaymenTypeId" Type="int" />
+          <Property Name="PaymentAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WPF.Hotel.RoomBooking' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RoomBooking">
+          <Key>
+            <PropertyRef Name="BookingId" />
+            <PropertyRef Name="NomClient" />
+            <PropertyRef Name="AdressClient" />
+            <PropertyRef Name="BookingFrom" />
+            <PropertyRef Name="BookingTo" />
+            <PropertyRef Name="AssignIdChambre" />
+            <PropertyRef Name="NombreMembres" />
+            <PropertyRef Name="TotalAmount" />
+          </Key>
+          <Property Name="BookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomClient" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdressClient" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BookingFrom" Type="date" Nullable="false" />
+          <Property Name="BookingTo" Type="date" Nullable="false" />
+          <Property Name="AssignIdChambre" Type="int" Nullable="false" />
+          <Property Name="NombreMembres" Type="int" Nullable="false" />
+          <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WPF.Master.BookingStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BookingStatus">
+          <Key>
+            <PropertyRef Name="BookingStatusId" />
+          </Key>
+          <Property Name="BookingStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookingStatus" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WPF.Master.PaymentTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PaymentTypes">
+          <Key>
+            <PropertyRef Name="PaymentTypeId" />
+            <PropertyRef Name="PaymentType" />
+          </Key>
+          <Property Name="PaymentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WPF.Master.TypeChambreT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TypeChambreT">
+          <Key>
+            <PropertyRef Name="idTypeChambre" />
+          </Key>
+          <Property Name="idTypeChambre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="typeChambre" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityContainer Name="WPFModelStoreContainer">
+          <EntitySet Name="Chambres" EntityType="Self.Chambres" store:Type="Tables" store:Schema="Hotel">
+            <DefiningQuery>SELECT 
+    [Chambres].[IdChambre] AS [IdChambre], 
+    [Chambres].[NumChambre] AS [NumChambre], 
+    [Chambres].[ImageChambre] AS [ImageChambre], 
+    [Chambres].[PrixChambre] AS [PrixChambre], 
+    [Chambres].[BookingStatusId] AS [BookingStatusId], 
+    [Chambres].[idTypeChambre] AS [idTypeChambre], 
+    [Chambres].[CapaciteChambre] AS [CapaciteChambre], 
+    [Chambres].[DescriptionChambre] AS [DescriptionChambre], 
+    [Chambres].[IsActive] AS [IsActive]
+    FROM [Hotel].[Chambres] AS [Chambres]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Payments" EntityType="Self.Payments" store:Type="Tables" store:Schema="Hotel">
+            <DefiningQuery>SELECT 
+    [Payments].[PaymentId] AS [PaymentId], 
+    [Payments].[BookingId] AS [BookingId], 
+    [Payments].[PaymenTypeId] AS [PaymenTypeId], 
+    [Payments].[PaymentAmount] AS [PaymentAmount], 
+    [Payments].[isActive] AS [isActive]
+    FROM [Hotel].[Payments] AS [Payments]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RoomBooking" EntityType="Self.RoomBooking" store:Type="Tables" store:Schema="Hotel">
+            <DefiningQuery>SELECT 
+    [RoomBooking].[BookingId] AS [BookingId], 
+    [RoomBooking].[NomClient] AS [NomClient], 
+    [RoomBooking].[AdressClient] AS [AdressClient], 
+    [RoomBooking].[BookingFrom] AS [BookingFrom], 
+    [RoomBooking].[BookingTo] AS [BookingTo], 
+    [RoomBooking].[AssignIdChambre] AS [AssignIdChambre], 
+    [RoomBooking].[NombreMembres] AS [NombreMembres], 
+    [RoomBooking].[TotalAmount] AS [TotalAmount]
+    FROM [Hotel].[RoomBooking] AS [RoomBooking]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BookingStatus" EntityType="Self.BookingStatus" store:Type="Tables" store:Schema="Master">
+            <DefiningQuery>SELECT 
+    [BookingStatus].[BookingStatusId] AS [BookingStatusId], 
+    [BookingStatus].[BookingStatus] AS [BookingStatus]
+    FROM [Master].[BookingStatus] AS [BookingStatus]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" store:Type="Tables" store:Schema="Master">
+            <DefiningQuery>SELECT 
+    [PaymentTypes].[PaymentTypeId] AS [PaymentTypeId], 
+    [PaymentTypes].[PaymentType] AS [PaymentType]
+    FROM [Master].[PaymentTypes] AS [PaymentTypes]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TypeChambreT" EntityType="Self.TypeChambreT" store:Type="Tables" store:Schema="Master">
+            <DefiningQuery>SELECT 
+    [TypeChambreT].[idTypeChambre] AS [idTypeChambre], 
+    [TypeChambreT].[typeChambre] AS [typeChambre]
+    FROM [Master].[TypeChambreT] AS [TypeChambreT]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WPFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Chambre">
+          <Key>
+            <PropertyRef Name="IdChambre" />
+            <PropertyRef Name="NumChambre" />
+            <PropertyRef Name="ImageChambre" />
+            <PropertyRef Name="PrixChambre" />
+            <PropertyRef Name="BookingStatusId" />
+            <PropertyRef Name="idTypeChambre" />
+            <PropertyRef Name="CapaciteChambre" />
+            <PropertyRef Name="DescriptionChambre" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="IdChambre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumChambre" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImageChambre" Type="String" MaxLength="550" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PrixChambre" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="BookingStatusId" Type="Int32" Nullable="false" />
+          <Property Name="idTypeChambre" Type="Int32" Nullable="false" />
+          <Property Name="CapaciteChambre" Type="Int32" Nullable="false" />
+          <Property Name="DescriptionChambre" Type="String" MaxLength="550" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentId" />
+          </Key>
+          <Property Name="PaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookingId" Type="Int32" />
+          <Property Name="PaymenTypeId" Type="Int32" />
+          <Property Name="PaymentAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="isActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="RoomBooking">
+          <Key>
+            <PropertyRef Name="BookingId" />
+            <PropertyRef Name="NomClient" />
+            <PropertyRef Name="AdressClient" />
+            <PropertyRef Name="BookingFrom" />
+            <PropertyRef Name="BookingTo" />
+            <PropertyRef Name="AssignIdChambre" />
+            <PropertyRef Name="NombreMembres" />
+            <PropertyRef Name="TotalAmount" />
+          </Key>
+          <Property Name="BookingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomClient" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AdressClient" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BookingFrom" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BookingTo" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AssignIdChambre" Type="Int32" Nullable="false" />
+          <Property Name="NombreMembres" Type="Int32" Nullable="false" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookingStatu">
+          <Key>
+            <PropertyRef Name="BookingStatusId" />
+          </Key>
+          <Property Name="BookingStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookingStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="PaymentTypeId" />
+            <PropertyRef Name="PaymentType1" />
+          </Key>
+          <Property Name="PaymentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeChambreT">
+          <Key>
+            <PropertyRef Name="idTypeChambre" />
+          </Key>
+          <Property Name="idTypeChambre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="typeChambre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="WPFEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Chambres" EntityType="Self.Chambre" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="RoomBookings" EntityType="Self.RoomBooking" />
+          <EntitySet Name="BookingStatus" EntityType="Self.BookingStatu" />
+          <EntitySet Name="PaymentTypes" EntityType="Self.PaymentType" />
+          <EntitySet Name="TypeChambreTs" EntityType="Self.TypeChambreT" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WPFModelStoreContainer" CdmEntityContainer="WPFEntities1">
+          <EntitySetMapping Name="Chambres">
+            <EntityTypeMapping TypeName="WPFModel.Chambre">
+              <MappingFragment StoreEntitySet="Chambres">
+                <ScalarProperty Name="IdChambre" ColumnName="IdChambre" />
+                <ScalarProperty Name="NumChambre" ColumnName="NumChambre" />
+                <ScalarProperty Name="ImageChambre" ColumnName="ImageChambre" />
+                <ScalarProperty Name="PrixChambre" ColumnName="PrixChambre" />
+                <ScalarProperty Name="BookingStatusId" ColumnName="BookingStatusId" />
+                <ScalarProperty Name="idTypeChambre" ColumnName="idTypeChambre" />
+                <ScalarProperty Name="CapaciteChambre" ColumnName="CapaciteChambre" />
+                <ScalarProperty Name="DescriptionChambre" ColumnName="DescriptionChambre" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="WPFModel.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+                <ScalarProperty Name="PaymenTypeId" ColumnName="PaymenTypeId" />
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomBookings">
+            <EntityTypeMapping TypeName="WPFModel.RoomBooking">
+              <MappingFragment StoreEntitySet="RoomBooking">
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+                <ScalarProperty Name="NomClient" ColumnName="NomClient" />
+                <ScalarProperty Name="AdressClient" ColumnName="AdressClient" />
+                <ScalarProperty Name="BookingFrom" ColumnName="BookingFrom" />
+                <ScalarProperty Name="BookingTo" ColumnName="BookingTo" />
+                <ScalarProperty Name="AssignIdChambre" ColumnName="AssignIdChambre" />
+                <ScalarProperty Name="NombreMembres" ColumnName="NombreMembres" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookingStatus">
+            <EntityTypeMapping TypeName="WPFModel.BookingStatu">
+              <MappingFragment StoreEntitySet="BookingStatus">
+                <ScalarProperty Name="BookingStatusId" ColumnName="BookingStatusId" />
+                <ScalarProperty Name="BookingStatus" ColumnName="BookingStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentTypes">
+            <EntityTypeMapping TypeName="WPFModel.PaymentType">
+              <MappingFragment StoreEntitySet="PaymentTypes">
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+                <ScalarProperty Name="PaymentType1" ColumnName="PaymentType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeChambreTs">
+            <EntityTypeMapping TypeName="WPFModel.TypeChambreT">
+              <MappingFragment StoreEntitySet="TypeChambreT">
+                <ScalarProperty Name="idTypeChambre" ColumnName="idTypeChambre" />
+                <ScalarProperty Name="typeChambre" ColumnName="typeChambre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
